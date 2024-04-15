@@ -1,13 +1,16 @@
 import '../styles/globals.css';
 import 'prismjs/themes/prism-tomorrow.css';
 
-function MyApp({ Component, pageProps }) {
+import { SessionProvider } from "next-auth/react"
+
+export default function MyApp({ Component, pageProps: { session, ...pageProps }, 
+}) {
   return (
     <>
-      <span className="theme-bejamas" />
-      <Component {...pageProps} />
+      <SessionProvider session={session}>
+        <span className="theme-bejamas" />
+        <Component {...pageProps} />
+      </SessionProvider>
     </>
   );
 }
-
-export default MyApp;
