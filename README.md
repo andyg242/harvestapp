@@ -17,6 +17,9 @@ Repos and Tutorials Used
 
 - [Building Javascript Apps with Microsoft Graph](https://learn.microsoft.com/en-us/graph/tutorials/javascript?tabs=aad)
 
+- [Microsoft Graph Permissions Ref](https://learn.microsoft.com/en-us/graph/permissions-reference#all-permissions)
+
+- [Working with Sharepoint List Items in Graph](https://learn.microsoft.com/en-us/graph/api/resources/list?view=graph-rest-1.0)
 
 ### Setting Up Locally
 
