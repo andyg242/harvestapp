@@ -6,15 +6,10 @@ export default async (req, res) => {
   const session = await getServerSession(req, res, authOptions)
 
   if (session) {
-    //console.log("hi from articles")
     const headers = { 'Authorization': 'Bearer ' + session.accessToken }; // auth header with bearer token
     const graphendpointURL = `${process.env.GRAPH_HOST}/v1.0/sites/${process.env.SHAREPOINT_SITE}/lists/posts/items?expand=fields(select=Title,Description,Body,Slug)`;
-    //const graphendpointURL = `${process.env.GRAPH_HOST}/v1.0/sites/root`;
-    //console.log(graphendpointURL);
-    //console.log(headers);
     const graphres = await fetch(graphendpointURL, { headers });
     const graphposts = await graphres.json();
-    //console.log(graphposts);
     if (graphposts.error){
       if (graphposts.error.code === 'InvalidAuthenticationToken') {
         res.send({
@@ -28,23 +23,7 @@ export default async (req, res) => {
       }
     }
     else {
-      let posts = [
-        {
-          title: "Test Title",
-          slug: "test",
-          filePath:"sdfsfsfsdfsf121",
-          description: "Test Description",
-          date: "4/17/2024"
-        },
-        {
-          title: "Another Title",
-          slug: "test2",
-          filePath:"sdfsfsfsdfsf4564",
-          description: "Another Description",
-          date: "4/17/2024"
-        },
-      ];
-      let urls = [];
+      let posts = [];
         graphposts.value.forEach(function(graphpost) {
         let newpost = {
           title: graphpost.fields.Title,

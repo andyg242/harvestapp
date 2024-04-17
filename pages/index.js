@@ -1,15 +1,11 @@
 import Link from 'next/link';
-//import { getPosts } from '../utils/mdx-utils';
 import React, { useState, useEffect, useRef } from 'react';
-import { getGraphPosts } from '../utils/graphHelper';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Layout, { GradientBackground } from '../components/Layout';
 import ArrowIcon from '../components/ArrowIcon';
 import { getGlobalData } from '../utils/global-data';
 import SEO from '../components/SEO';
-import { getSession } from "next-auth/next"
-import { authOptions } from "../pages/api/auth/[...nextauth]"
 
 export default function Index({ globalData }) {
  
@@ -25,20 +21,15 @@ export default function Index({ globalData }) {
     let posts = [];
     const graphres = await fetch(`/api/articles`);
     let graphpostsData = await graphres.json();
-    console.log('did we get an error? ' + graphres.error)
   
     if (graphpostsData.error != undefined){
-      console.log("got some errors");
+        //console.log("got some errors");
     } else {
       posts = graphpostsData.content;
-      console.log(posts);
     }
     return posts;
   }
 
-  
-
-   
   return (
     <Layout>
       <SEO title={globalData.name} description={globalData.blogTitle} />
@@ -89,43 +80,9 @@ export default function Index({ globalData }) {
   );
 }
 
-// export function getStaticProps() {
+export function getStaticProps() {
 
-//   const posts = getPosts();
-
-//   //let posts2 = getGraphPosts();
-  
-//   const globalData = getGlobalData();
-
-//   return { props: { posts, globalData } };
-// }
-
-
-export async function getServerSideProps(req, res) {
-  // Fetch data from external API
-  let posts = [];
-  // let posts = [
-  //   {
-  //     title: "Test Title",
-  //     slug: "test",
-  //     filePath:"sdfsfsfsdfsf121",
-  //     description: "Test Description",
-  //     date: "4/17/2024"
-  //   },
-  //   {
-  //     title: "Another Title",
-  //     slug: "test",
-  //     filePath:"sdfsfsfsdfsf4564",
-  //     description: "Another Description",
-  //     date: "4/17/2024"
-  //   },
-  // ];
-
-  
   const globalData = getGlobalData();
-  
-  // Pass data to the page via props
-  //return { props: { posts, globalData } }
-  return { props: { globalData } }
-}
 
+  return { props: { globalData } };
+}
