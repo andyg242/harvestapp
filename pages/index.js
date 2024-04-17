@@ -1,14 +1,44 @@
 import Link from 'next/link';
-import { getPosts } from '../utils/mdx-utils';
-
+//import { getPosts } from '../utils/mdx-utils';
+import React, { useState, useEffect, useRef } from 'react';
+import { getGraphPosts } from '../utils/graphHelper';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Layout, { GradientBackground } from '../components/Layout';
 import ArrowIcon from '../components/ArrowIcon';
 import { getGlobalData } from '../utils/global-data';
 import SEO from '../components/SEO';
+import { getSession } from "next-auth/next"
+import { authOptions } from "../pages/api/auth/[...nextauth]"
 
-export default function Index({ posts, globalData }) {
+export default function Index({ globalData }) {
+ 
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    fetchPosts()
+          .then((p) => setPosts(p))
+          .catch((e) => console.log(e));
+  },[])
+
+  const fetchPosts = async () => {
+    let posts = [];
+    const graphres = await fetch(`/api/articles`);
+    let graphpostsData = await graphres.json();
+    console.log('did we get an error? ' + graphres.error)
+  
+    if (graphpostsData.error != undefined){
+      console.log("got some errors");
+    } else {
+      posts = graphpostsData.content;
+      console.log(posts);
+    }
+    return posts;
+  }
+
+  
+
+   
   return (
     <Layout>
       <SEO title={globalData.name} description={globalData.blogTitle} />
@@ -24,19 +54,19 @@ export default function Index({ posts, globalData }) {
               className="md:first:rounded-t-lg md:last:rounded-b-lg backdrop-blur-lg bg-white dark:bg-black dark:bg-opacity-30 bg-opacity-10 hover:bg-opacity-20 dark:hover:bg-opacity-50 transition border border-gray-800 dark:border-white border-opacity-10 dark:border-opacity-10 border-b-0 last:border-b hover:border-b hovered-sibling:border-t-0"
             >
               <Link
-                as={`/posts/${post.filePath.replace(/\.mdx?$/, '')}`}
+                as={`/posts/${post.slug}`}
                 href={`/posts/[slug]`}
                 className="py-6 lg:py-10 px-6 lg:px-16 block focus:outline-none focus:ring-4">
 
-                {post.data.date && (
+                {post.date && (
                   <p className="uppercase mb-3 font-bold opacity-60">
-                    {post.data.date}
+                    {post.date}
                   </p>
                 )}
-                <h2 className="text-2xl md:text-3xl">{post.data.title}</h2>
-                {post.data.description && (
+                <h2 className="text-2xl md:text-3xl">{post.title}</h2>
+                {post.description && (
                   <p className="mt-3 text-lg opacity-60">
-                    {post.data.description}
+                    {post.description}
                   </p>
                 )}
                 <ArrowIcon className="mt-4" />
@@ -59,9 +89,43 @@ export default function Index({ posts, globalData }) {
   );
 }
 
-export function getStaticProps() {
-  const posts = getPosts();
-  const globalData = getGlobalData();
+// export function getStaticProps() {
 
-  return { props: { posts, globalData } };
+//   const posts = getPosts();
+
+//   //let posts2 = getGraphPosts();
+  
+//   const globalData = getGlobalData();
+
+//   return { props: { posts, globalData } };
+// }
+
+
+export async function getServerSideProps(req, res) {
+  // Fetch data from external API
+  let posts = [];
+  // let posts = [
+  //   {
+  //     title: "Test Title",
+  //     slug: "test",
+  //     filePath:"sdfsfsfsdfsf121",
+  //     description: "Test Description",
+  //     date: "4/17/2024"
+  //   },
+  //   {
+  //     title: "Another Title",
+  //     slug: "test",
+  //     filePath:"sdfsfsfsdfsf4564",
+  //     description: "Another Description",
+  //     date: "4/17/2024"
+  //   },
+  // ];
+
+  
+  const globalData = getGlobalData();
+  
+  // Pass data to the page via props
+  //return { props: { posts, globalData } }
+  return { props: { globalData } }
 }
+

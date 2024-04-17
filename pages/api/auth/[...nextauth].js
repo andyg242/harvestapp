@@ -7,11 +7,17 @@ export const authOptions = {
       clientId: process.env.AZURE_AD_CLIENT_ID,
       clientSecret: process.env.AZURE_AD_CLIENT_SECRET,
       tenantId: process.env.AZURE_AD_TENANT_ID,
+      authorization: {
+        params: {
+          scope:
+            "openid email profile user.read sites.fullControl.all"
+        },
+      },
     })
   ],
   callbacks: {
         async jwt({ token, account }) {
-            console.log("in callback");
+            
         // Persist the OAuth access_token to the token right after signin
         if (account) {
             token.accessToken = account.access_token
@@ -21,11 +27,13 @@ export const authOptions = {
         async session({ session, token, user }) {
         // Send properties to the client, like an access_token from a provider.
         session.accessToken = token.accessToken
+        
         return session
         },
         async signIn({ profile }) {
             try {
-                console.log(profile);
+                // console.log("User Profile Data");
+                // console.log(profile);
                 return true;
             } catch (error) {
                 console.log("///////////////////////////////////");
