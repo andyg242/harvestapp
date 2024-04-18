@@ -41,11 +41,18 @@ Open your browser and visit <http://localhost:3000>, your project should be runn
 
 ## Configuring the blog
 
-The config is based on environment variables to make it easy to integrate with any Jamstack platform, like Netlify.
+The config is based on environment variables. Create an .env.local file or provide the following process env variables to the app. To configure an app in Azure AD, use [thiese instructions](https://blog.designly.biz/nextjs-13-react-single-sign-on-sso-authentication-via-azure-active-directory).
 
 Here are the variables you can edit:
 | Variable | Description | Options
 | --- | --- | --- |
+| `AZURE_AD_CLIENT_ID` | Client ID of your Azure AD App ||
+| `AZURE_AD_CLIENT_SECRET` | Client Secret of your Azure AD App ||
+| `AZURE_AD_TENANT_ID` | Tenant ID of your Azure AD App ||
+| `NEXTAUTH_SECRET` | Secret string for Azure AD App ||
+|`WEB_HOST` | Web hostname for hosted app||
+|`GRAPH_HOST` | Host name for Graph API endpoint ||
+|`SHAREPOINT_SITE` | Sharepoint site host for lists||
 | `BLOG_NAME` | the name of your blog, displayed below the avatar ||
 | `BLOG_TITLE` | the main header (`h1`) on the home page ||
 | `BLOG_FOOTER_TEXT`| the text in the footer ||
