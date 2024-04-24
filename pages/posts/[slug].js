@@ -1,4 +1,5 @@
 import { getGlobalData } from '../../utils/global-data';
+import React, { useState, useEffect } from 'react';
 import {
   getNextPostBySlug,
   getPostBySlug,
@@ -35,6 +36,34 @@ export default function PostPage({
   nextPost,
   globalData,
 }) {
+  const [post, setPost] = useState([]);
+
+  useEffect(() => {
+    fetchPost(slug)
+          .then((p) => setPost(p))
+          .catch((e) => console.log(e));
+  },[])
+
+  const fetchPost = async (slug) => {
+    console.log(slug);
+    let post = {
+          title: graphpost.fields.Title,
+          slug: graphpost.fields.Slug,
+          filePath: graphpost.webUrl,
+          description: graphpost.fields.Description,
+          body: graphpost.fields.Body
+        } 
+    const graphres = await fetch(`/api/articles?slug=` + slug);
+    let graphpostData = await graphres.json();
+  
+    if (graphpostData.error != undefined){
+        //console.log("got some errors");
+    } else {
+      post = graphpostData.content;
+    }
+    return post;
+  }
+
   return (
     <Layout>
       <SEO
