@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSession } from "next-auth/react"
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Layout, { GradientBackground } from '../components/Layout';
@@ -9,12 +10,14 @@ import SEO from '../components/SEO';
 
 export default function Index({ globalData }) {
  
+  const { data: session, status } = useSession();
   const [posts, setPosts] = useState([]);
-
+  
   useEffect(() => {
     fetchPosts()
           .then((p) => setPosts(p))
           .catch((e) => console.log(e));
+
   },[])
 
   const fetchPosts = async () => {
