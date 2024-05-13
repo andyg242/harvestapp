@@ -1,7 +1,12 @@
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import { useSession } from 'next-auth/react';
-import Markdown from 'react-markdown'
+import Markdown from 'react-markdown';
+// import { CodeBlock } from './components/Code';
+import remarkGfm from 'remark-gfm'
+import rehypeSanitize from 'rehype-sanitize'
+import rehypeExternalLinks from 'rehype-external-links'
+
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import Layout, { GradientBackground } from '../../components/Layout';
@@ -39,6 +44,8 @@ export default function Page({ globalData }) {
 
   const { data: session, status } = useSession();  
   const [content, setContent] = useState();
+
+  // const options = { code: CodeBlock }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -120,7 +127,7 @@ export default function Page({ globalData }) {
 
               <label htmlFor="body" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Full Article</label>
               <section className='w-full pt-5 h-full'>
-                <textarea id="body" name="body" 
+                <textarea id="article-body" name="body" 
                   className='w-full ... placeholder:opacity-80'
                   placeholder='Feed me some Markdown 🍕'
                   value={body}
@@ -131,8 +138,16 @@ export default function Page({ globalData }) {
             </div>
             <div className="w-full md:w-full px-3 mb-6 md:mb-0">
               <div className='fixed ... border-dashed' />
-              <article className='w-full pt-5 pl-6'>
-                <Markdown className='prose prose-invert min-w-full'>
+              <article id="post-rendered-article" className='w-full pt-5 pl-6'>
+                <Markdown className='prose prose-invert min-w-full' 
+                  remarkPlugins={[remarkGfm]}
+                  rehypePlugins={[
+                    rehypeSanitize,
+                    [rehypeExternalLinks,
+                     { content: { type: 'text', value: '🔗' } }
+                    ],
+                  ]}
+                >
                   {body}
                 </Markdown>
               </article>

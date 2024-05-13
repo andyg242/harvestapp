@@ -12,34 +12,6 @@ const formSchema = Yup.object({
   Body: Yup.string().required("Body is Requried"),
 });
 
-// async function saveFormData(formfields, graphURL, headers) {
-//   const reqbody = {
-//     "fields": formfields
-//   }
-//   const graphendpointURL = graphURL + `/items)`;
-//   const graphres = await fetch(graphendpointURL, {
-//     Method: 'POST',
-//     Headers: headers,
-//     Body: reqbody,
-//     Cache: 'default'
-//   });
-//   //const graphres = await fetch(graphendpointURL, { headers });
-//   const graphpostaddresp = await graphres.json();
-//   console.log(graphpostaddresp.error);
-//   if (graphpostaddresp.error){
-//     if (graphpostaddresp.error.code === 'InvalidAuthenticationToken') {
-//       res.send({
-//         error: "Your session has timed out, please log in again.",
-//       })
-//     }
-//     else {
-//       res.send({
-//         error: "Sorry but there was an error retrieving.",
-//       })
-//     }
-//   }
-// }
-
 async function validateFromData(fields, files) {
   try {
     await formSchema.validate({ ...fields, ...files });
@@ -81,8 +53,7 @@ export default async (req, res) => {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + session.accessToken
     };
-    // console.log(graphItemsURL);
-    // console.log(httpHeaders);
+
     if (req.method === 'POST') {
       let isValidRequest=false;
       let formFields={};
@@ -93,7 +64,7 @@ export default async (req, res) => {
       }
       catch (e) {
         res.status(500).send({ status: "error validating form" });
-        console.log(e);
+        //console.log(e);
         return;
       }
       if (isValidRequest) {
@@ -103,10 +74,7 @@ export default async (req, res) => {
         const reqbody = {
           "fields": formFields
         }
-        console.log(reqbody);
-        // console.log(graphItemsURL);
-        // console.log(httpHeaders);
-        // console.log(JSON.stringify(reqbody));
+
         try {
           const response = await axios.post(graphItemsURL,
               JSON.stringify(reqbody),
@@ -114,15 +82,13 @@ export default async (req, res) => {
                   headers: httpHeaders
               }
           );
-          console.log(response?.data);
-          // console.log(response?.accessToken);
-          //console.log(JSON.stringify(response));
+
           res.send({
             status: "post saved"
           })
         }
         catch (err) {
-            console.log(err.response);
+            //console.log(err.response);
             if (!err?.response) {
               res.status(400).send({
                 error: "No Server Response",

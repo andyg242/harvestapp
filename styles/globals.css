@@ -15,3 +15,33 @@ h6 {
 body {
   font-family: var(--font-secondary);
 }
+
+#article-body {
+  height: 350px;
+}
+
+#post-rendered-article {
+  background-color:#FFF;
+  color: #000;
+  height: 400px;
+  border: 3px solid grey;
+  width: 100%px;
+  aspect-ratio: 1;
+  overflow-y: scroll;
+}
+
+#post-rendered-article p {
+  color: #000;
+}
+
+#post-rendered-article li {
+  color: #000;
+}
+
+#post-rendered-article h2 {
+  color: #000;
+}
+
+#post-rendered-article a {
+  color: #bb6825;
+}
