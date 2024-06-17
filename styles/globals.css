@@ -1,47 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@tailwind variants;
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-primary);
+.episode-post h2 {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #9e5302;
 }
 
-body {
-  font-family: var(--font-secondary);
+.episode-post h3 {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #9e5302;
+}
+.episode-post p {
+    margin-top:20px;
+}
+.episode-post ul {
+    margin-top:20px;
+    margin-bottom:20px;
+}
+.episode-post li {
+    padding-left:20px;
+}
+.episode-post a {
+    color: rgb(113, 58, 0);
+    text-decoration: underline;
 }
 
-#article-body {
-  height: 350px;
+.episode-post img {
+    max-width: 500px;
 }
 
-#post-rendered-article {
-  background-color:#FFF;
-  color: #000;
-  height: 400px;
-  border: 3px solid grey;
-  width: 100%px;
-  aspect-ratio: 1;
-  overflow-y: scroll;
+@media (min-width:320px)  { /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+    .episode-post img {
+        max-width: 90%;
+    }
+}
+@media (min-width:480px)  { /* smartphones, Android phones, landscape iPhone */ 
+    .episode-post img {
+        max-width: 90%;
+    }
+}
+@media (min-width:600px)  { /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */ 
+    .episode-post img {
+        max-width: 90%;
+    }
 }
 
-#post-rendered-article p {
-  color: #000;
+
+.instructions {
+    font-size: 0.75rem;
+    border-radius: 0.5rem;
+    background: #000;
+    color: #fff;
+    padding: 0.25rem;
+    position: relative;
+    bottom: -10px;
 }
 
-#post-rendered-article li {
-  color: #000;
+.instructions > svg {
+    margin-right: 0.25rem;
 }
 
-#post-rendered-article h2 {
-  color: #000;
+.offscreen {
+    position: absolute;
+    left: -9999px;
 }
 
-#post-rendered-article a {
-  color: #bb6825;
+.photocaption p {
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+.photocaptionlg p {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.shownotes {
+    color: #e2922f;
+    text-decoration: underline;
+}
+
+.signupconfirm h2 {
+    font-size: 20px;
+    color:#f3f4ab
+}
+
+.contactusconfirm h2 {
+    font-size: 20px;
+    color:#d37400;
+    margin-bottom: 20px;
 }

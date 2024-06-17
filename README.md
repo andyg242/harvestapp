@@ -1,62 +1,36 @@
-# Harvest CMS Client for Sharepoint
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-This client uses NextJS, Authentication to Azure Active Directory and Microsoft Graph API to provide a headless CMS experience for Sharepoint Lists
+## Getting Started
 
+First, run the development server:
 
-
-
-Repos and Tutorials Used
-
-- [NextAuth, for SSO Authentication](https://next-auth.js.org/)
-
-- [Netlify Next.js Blog Template designed by Bejamas](https://user-images.githubusercontent.com/43764894/223762618-62742b4e-9424-44a7-8e85-9f7e4e19db54.png)
-
-- [NextJS 13 / React Single Sign-On](https://blog.designly.biz/nextjs-13-react-single-sign-on-sso-authentication-via-azure-active-directory)
-
-- [Microsoft Tutorials, Audio/Video Calling from a Custom App into a Teams Meeting](https://microsoft.github.io/MicrosoftCloud/tutorials/docs/ACS-to-Teams-Meeting/)
-
-- [Building Javascript Apps with Microsoft Graph](https://learn.microsoft.com/en-us/graph/tutorials/javascript?tabs=aad)
-
-- [Microsoft Graph Permissions Ref](https://learn.microsoft.com/en-us/graph/permissions-reference#all-permissions)
-
-- [Working with Sharepoint List Items in Graph](https://learn.microsoft.com/en-us/graph/api/resources/list?view=graph-rest-1.0)
-
-### Setting Up Locally
-
-If you're doing it locally, start with clicking the [use this template](https://github.com/netlify-templates/nextjs-blog-theme/generate) button on GitHub. This will create a new repository with this template's files on your GitHub account. Once that is done, clone your new repository and navigate to it in your terminal.
-
-From there, you can install the project's dependencies by running:
-
-```shell
-yarn install
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-Finally, you can run your project locally with:
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-```shell
-yarn run dev
-```
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-Open your browser and visit <http://localhost:3000>, your project should be running!
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Configuring the blog
+## Learn More
 
-The config is based on environment variables. Create an .env.local file or provide the following process env variables to the app. To configure an app in Azure AD, use [thiese instructions](https://blog.designly.biz/nextjs-13-react-single-sign-on-sso-authentication-via-azure-active-directory).
+To learn more about Next.js, take a look at the following resources:
 
-Here are the variables you can edit:
-| Variable | Description | Options
-| --- | --- | --- |
-| `AZURE_AD_CLIENT_ID` | Client ID of your Azure AD App ||
-| `AZURE_AD_CLIENT_SECRET` | Client Secret of your Azure AD App ||
-| `AZURE_AD_TENANT_ID` | Tenant ID of your Azure AD App ||
-| `NEXTAUTH_SECRET` | Secret string for Azure AD App ||
-|`WEB_HOST` | Web hostname for hosted app||
-|`GRAPH_HOST` | Host name for Graph API endpoint ||
-|`SHAREPOINT_SITE` | Sharepoint site host for lists||
-| `BLOG_NAME` | the name of your blog, displayed below the avatar ||
-| `BLOG_TITLE` | the main header (`h1`) on the home page ||
-| `BLOG_FOOTER_TEXT`| the text in the footer ||
-| `BLOG_THEME` | the theme to pass to Tailwind | default |
-| `BLOG_FONT_HEADINGS` | the font-family for all HTML headings, from `h1` to `h6`| sans-serif (default), serif, monospace|
-| `BLOG_FONT_PARAGRAPHS` | the font-family for all other HTML elements | sans-serif (default), serif, monospace|
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
