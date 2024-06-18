@@ -49,7 +49,7 @@ Here are the variables you can edit:
 | `AZURE_AD_TENANT_ID` | Tenant ID of your Azure AD App ||
 | `NEXTAUTH_SECRET` | Secret string for Azure AD App ||
 |`WEB_HOST` | Web hostname for hosted app||
-| `BLOG_NAME` | the name of your blog ||
-| `BLOG_TITLE` | the main header (`h1`) on the home page ||
-| `BLOG_DESCRIPTION`| the text in the footer ||
+| `BLOG_NAME` | used for page meta ||
+| `BLOG_TITLE` | Used for meta and front page h1 ||
+| `BLOG_DESCRIPTION`| used for page meta ||
 
