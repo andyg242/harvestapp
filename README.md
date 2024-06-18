@@ -51,8 +51,5 @@ Here are the variables you can edit:
 |`WEB_HOST` | Web hostname for hosted app||
 | `BLOG_NAME` | the name of your blog ||
 | `BLOG_TITLE` | the main header (`h1`) on the home page ||
-| `BLOG_FOOTER_TEXT`| the text in the footer ||
-| `BLOG_THEME` | the theme to pass to Tailwind | default |
-| `BLOG_FONT_HEADINGS` | the font-family for all HTML headings, from `h1` to `h6`| sans-serif (default), serif, monospace|
-| `BLOG_FONT_PARAGRAPHS` | the font-family for all other HTML elements | sans-serif (default), serif, monospace|
+| `BLOG_DESCRIPTION`| the text in the footer ||
 
