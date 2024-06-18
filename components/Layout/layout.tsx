@@ -13,7 +13,7 @@ export default function Layout({ children }: LayoutProps) {
   const globalData = getGlobalData();
   return (
     <>
-      <Seo title={globalData.blogTitle} description="A tiny CMS for IT News" />
+      <Seo blogTitle={globalData.blogTitle} blogDescription={globalData.blogDescription} />
       
       <Navbar />
       <main>{children}</main>

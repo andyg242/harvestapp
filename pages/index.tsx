@@ -46,7 +46,7 @@ export default function IndexPage({ globalData }) {
 
       </div>
       <div className="relative z-20 pt-40 md:pt-48 pb-32 md:pb-40 border-b-4 border-primary">
-          <h1 className="uppercase text-white font-header text-3xl md:text-4xl text-center">Harvest: News From Around IT</h1>
+          <h1 className="uppercase text-white font-header text-3xl md:text-4xl text-center">{globalData.blogTitle}</h1>
       </div>
     </div>
   

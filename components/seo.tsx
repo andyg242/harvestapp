@@ -3,7 +3,9 @@ import * as React from "react"
 import Head from 'next/head';
 
 
-const Seo = ({ description, title, children }) => {
+const Seo = ({ blogDescription, blogTitle, children }) => {
+
+  console.log(blogTitle);
 
   return (
     <>
@@ -16,12 +18,12 @@ const Seo = ({ description, title, children }) => {
            content="width=device-width, initial-scale=1, shrink-to-fit=no"
            name="viewport"
        />
-       <title>{title}</title>
-       <meta name="description" content={description} />
-       <meta property="og:title" content={title} />
-       <meta property="og:description" content={description} />
+       <title>{blogTitle}</title>
+       <meta name="description" content={blogDescription} />
+       <meta property="og:title" content={blogTitle} />
+       <meta property="og:description" content={blogDescription} />
        <meta property="og:type" content="website" />
-       <meta property="og:site_name" content="Harvest - News from IT" />
+       <meta property="og:site_name" content={blogTitle} />
        <meta
            property="og:image"
            content=""
